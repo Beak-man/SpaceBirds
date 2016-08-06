@@ -12,6 +12,14 @@ var wwd = new WorldWind.ObjectWindow("canvasOne");
 wwd.navigator.lookAtLocation.altitude = 0;
 wwd.navigator.range = 5e7;
 
+// Get the canvas element form the page
+var canvas = document.getElementById("canvasOne");
+ 
+/* Rresize the canvas to occupy the full page, 
+   by getting the widow width and height and setting it to canvas*/
+ 
+canvas.width  = window.innerWidth;
+canvas.height = window.innerHeight;
 
 //Add imagery layers.
 var layers = [
