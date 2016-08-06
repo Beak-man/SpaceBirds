@@ -1,87 +1,127 @@
 <!DOCTYPE html>
 <!--@version $Id: BasicExample.html 3314 2015-07-10 18:28:45Z dcollins $-->
-
 <html lang="en">
 <head>
     <!--NOTE: Most Web World Wind examples use jquery, Bootstrap and requirejs but those technologies are NOT-->
     <!--required by Web World Wind. See SimplestExample.html for an example of using Web World Wind without them.-->
+    
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Boostrap-->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="styles/style2.css">
+    <!--jQuery-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+   
+    <link rel="stylesheet" href="./SatTracker/CSS/style.css">
+    <link rel="stylesheet" href="./SatTracker/assets/css/main.css" />
+
+    <!--jQuery UI-->
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+    
+    <!--Title-->
+    <title class="coolLogo">SPACEBIRDS</title>
+    <link rel="shortcut icon" href="./SatTracker/Logo/spacebirdlogo_dark.png" />
+
+    <style>
+
+        @font-face {
+            font-family: 'riko';
+            src: url('./SatTracker/Fonts/rikos.regular.ttf') format('truetype');
+        }
+        @font-face{
+            font-family: 'express';
+            src: url('./SatTracker/Fonts/expressway_rg.ttf') format('truetype');
+        }
+        h1, #projectHeader, .coolLogo{
+            font-family: 'riko';
+        }
+    </style>
+
 </head>
-<body>
-<div id="globe" class="container; width: 100%; height: auto">
-  <canvas id="canvasOne" style= "color:white; background-image: url('assets/bluespace.jpg'); width: 100%; height: auto" >
-      Your browser does not support HTML5 Canvas.
-  </canvas>
-  <div id="overlay">
-      <header style="color:white">
-        <h1 style="text-align: left">SpaceBirds Satellite tracker</h1>
-        <div style="color:black">
-          <button class="allSats">ALL OFF</button>
-          <button class="payloads">PAYLOADS OFF</button>
-          <button class="rockets">ROCKETS OFF</button>
-          <button class="debris">DEBRIS OFF</button>
-          <button class="unknown">UNKNOWN OFF</button>
+<body class="homepage" style=" background-image: url('./SatTracker/Images/backgroundBody.jpeg');">
+    
+    <div id="page-wrapper" style="color: white">
+        <div class="header">
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html" class="coolLogo">SPACEBIRDS</a></li>
+                    <li>
+                        <a href="#">Satellite Tracker</a>
+                        <ul>
+                            <li><br><spam class="allSats">Turn All ON</spam></li><br>
+                            <li><br><spam class="payloads">Turn Payloads ON</spam></li><br>
+                            <li><br><spam class="rockets">Turn Rockets ON</spam></li><br>
+                            <li><br><spam class="debris">Turn Debris ON</spam></li><br>
+                        </ul>
+				    </li>
+               
+                    <li>
+                        <a href="#">Orbit Range</a>
+                        <ul>
+                            <li><br><spam class="leo">Turn LEO ON</spam></li><br>
+                            <li><br><spam class="meo">Turn MEO ON</spam></li><br>
+                            <li><br><spam class="heo">Turn HEO ON</spam></li><br>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Tools</a>
+                        <ul>
+                            <li><br><spam class="follow">Turn Follow OFF</spam></li><br>
+                            <li><br><spam class="mesh">Turn Mesh OFF</spam></li><br>
+                        </ul>
+                    </li>
+                    <li><a href="#">Ground Stations</a>
+                        <ul>
+                            <li><br><spam class="gStations">Turn GS ON</spam></li><br>
+                        </ul>
+                    </li>
+                    <li>
+											 <a class=" scrolly"><h2 class="icon fa-search" style="background-color: transparent; font-size: 0.8em; color: white;"  ><span class="label">Posts</span></h2></a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-        <br>
-        <div style="color:black">
-          <h4 style="color:white">Orbit Range:</h4>
-          <button class="leo">LEO ON</button>
-          <button class="meo">MEO ON</button>
-          <button class="heo">HEO ON</button>
-          <button class="geo">GEO ON</button>
-        </div>
-        <br>
-        <div style="color:black">
-          <h4 style="color: white">Tools:</h4>
-          <button class='follow'>Follow On</button>
-          <button class='mesh'>Mesh On</button>
-        </div>
-        <br>
-        <div style="color: black">
-          <h4 style="color: white">Ground Stations</h4>
-          <button class='gStations'>GS OFF</button>
-        </div>
-      </header>
-  </div>
-    <div id="overlay2" style="color: black">
-      <div class="col-sm-2" style="width: 150px">
-        <h4>Projection</h4>
-        <div class="dropdown" id="projectionDropdown">
-        </div>
-      </div>
     </div>
-    <div id="infoBox">
-      <h4 style="color: white">Sat Info:</h4>
-      <p>SAT TYPE: <span id="type"></span></p>
-      <p>INTLDES: <span id="intldes"></span></p>
-      <p>NAME: <span id="name"></span></p>
-      <br>
-      <h4>Sat Position:</h4>
-      <p>LATITUDE: <span id="latitude"></span></p>
-      <p>LONGITUDE: <span id="longitude"></span></p>
-      <p>ALTITUDE: <span id="altitude"></span></p>
-      <br>
-      <h4>AXIS:</h4>
-      <p>SEMI-MAJOR: <span id="majorAxis"></span></p>
-      <p>SEMI-MINOR: <span id="minorAxis"></span></p>
-      <br>
-      <h4>Extra Data:</h4>
-      <p>INCLINE: <span id="inclination"></span></p>
-      <p>ECCENTRICITY: <span id="eccentricity"></span></p>
-      <p>REV/DAY: <span id="revDay"></span></p>
-      <p>APOGEE: <span id="apogee"></span></p>
-      <p>PERIGEE: <span id="perigee"></span></p>
-      <p>PERIOD: <span id="period"></span></p>
+
+<div id="globe" class="container" style="width: 100%; height: auto;  padding-top: 100px;">
+
+
+    <canvas id="canvasOne" style= "color:white; width: 100%; height: auto" >
+        Your browser does not support HTML5 Canvas.
+    </canvas>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+
+            </div>
+        </div>
     </div>
-  <br>
+    <div id="infoBox" style="color: white;">
+        <h4 style="color: white">Satellite Information</h4>
+        <p>NAME: <span id="name"></span></p>
+        <p>SAT TYPE: <span id="type"></span></p>
+        <p>LATITUDE: <span id="latitude"></span></p>
+        <p>LONGITUDE: <span id="longitude"></span></p>
+        <p>ALTITUDE: <span id="altitude"></span></p>
+        <p>INTLDES: <span id="intldes"></span></p>
+
+    </div>
+
+    <br>
+
 </div>
 </body>
-  <script src="util/worldwindlib.js"></script>
-  <script src="util/LayerManager.js"></script>
-  <script src="util/Satellite.js"></script>
-  <script src="SatTracker2.js"></script>
+<script src="worldwindlib.js"></script>
+<script src="LayerManager.js"></script>
+<script src="SatTracker/JS/Satellite.js"></script>
+<script src="SatTracker.js"></script>
+<script src="./SatTracker/assets/js/jquery.dropotron.min.js"></script>
+<script src="./SatTracker/assets/js/jquery.scrolly.min.js"></script>
+<script src="./SatTracker/assets/js/jquery.onvisible.min.js"></script>
+<script src="./SatTracker/assets/js/skel.min.js"></script>
+<script src="./SatTracker/assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="./SatTracker/assets/js/main.js"></script>
 </html>

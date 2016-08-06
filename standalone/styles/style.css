@@ -1,0 +1,66 @@
+body {
+    font-family: 'Droid Sans', sans-serif;
+    color: white;
+    background: black;
+}
+
+#canvasOne {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+#canvas-holder {
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+
+
+
+.container {
+    position: absolute;
+}
+#overlay {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+#overlay2 {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+#infoBox {
+    position: fixed;
+    left: 10px;
+    top: 50px;
+    background: transparent;
+    padding-left: 10px;
+    padding-right: 50px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+
+#infoBox:hover {
+    position: fixed;
+    left: 10px;
+    top: 50px;
+    background: transparent;
+    padding-left: 10px;
+    padding-right: 50px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    opacity: 1.0;
+    filter: alpha(opacity=100)
+}
